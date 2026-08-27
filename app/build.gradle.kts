@@ -16,7 +16,11 @@ repositories {
 }
 
 val lwjglVersion = "3.4.3"
-val lwjglNatives = "natives-linux"
+val lwjglNatives = when (org.gradle.internal.os.OperatingSystem.current()) {
+    org.gradle.internal.os.OperatingSystem.WINDOWS -> "natives-windows"
+    org.gradle.internal.os.OperatingSystem.MAC_OS -> "natives-macos"
+    else -> "natives-linux"
+}
 
 dependencies {
     // Use JUnit Jupiter for testing.
